@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { guardarFachada } from "@/clients/ProfesorClient.js";
+import { guardarFachada,actualizarFachada,actualizarParcialFachada,eliminarFachada } from "@/clients/ProfesorClient.js";
 export default {
   methods: {
     async guardar() {
@@ -21,7 +21,7 @@ export default {
       };
       await guardarFachada(profesorToBody);
     },
-    actualizar() {
+    async actualizar() {
       const profesorToBody = {
         nombre: "Santiago",
         apellido: "Leon",
@@ -29,7 +29,17 @@ export default {
         especialidad: "Informatica",
         genero: "M",
       };
-      actualizarFachada;(profesorToBody,3);
+      await actualizarFachada(profesorToBody, 3);
+    },
+    async actualizarParcial() {
+      const profesorToBody = {
+        nombre: "SantiagoActualizado",
+        apellido: "LeonActualizado",
+      };
+      await actualizarParcialFachada(profesorToBody, 3);
+    },
+    async eliminar() {
+      await eliminarFachada(3);
     },
   },
 };

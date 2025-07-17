@@ -2,7 +2,7 @@ import axios from "axios";
 //guardar 
 
 let URL_API = 'http://localhost:8081/api/matricula/v1/profesores';
-const guardar = async () => {
+const guardar = async (body) => {
     axios.post(URL_API, body).then(r => r.data);
 }
 
