@@ -7,7 +7,7 @@
       <button v-on:click="login">Ingresar</button>
     </div>
     <div v-if="valido" class="mensaje-error">
-        <h1> Error de ingreso </h1>
+      <h1>Error de ingreso</h1>
     </div>
   </div>
 </template>
@@ -18,19 +18,21 @@ export default {
     return {
       username: "",
       password: "",
-      valido: false, 
+      valido: false,
     };
   },
   methods: {
     login() {
-      if (this.username === "admin" && this.password === "123") {
-        localStorage.setItem("usuario", "admin");
+      if (
+        this.username === "admin" ||
+        (this.username === "estudiante" && this.password === "123")
+      ) {
+        localStorage.setItem("usuario", this.username);
         localStorage.setItem("auth", "true"); //bandera que me indica que el usuario esta logueado
         //redireccionar a la pagina de bienvenida
-        this.$router.push('/home') 
-        this.valido = true; 
-      }
-      else {
+        this.$router.push("/home");
+        this.valido = true;
+      } else {
         this.valido = true;
         alert("Usuario o contraseña incorrectos");
       }
@@ -71,7 +73,7 @@ button {
   color: white;
   cursor: pointer;
 }
-h1{
-    color: red;
+h1 {
+  color: red;
 }
 </style>
